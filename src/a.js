@@ -5,6 +5,7 @@ import abc from './abc';
 import abcd from './abcd';
 import onlya from './onlya'
 import aAndMain from './aAndMain';
+import markdown from './hello.md';
 export default function a() {
     console.log('a');
     ab();
@@ -14,4 +15,7 @@ export default function a() {
     abcd();
     onlya();
     aAndMain();
+    const html = document.createElement('div');
+    html.innerHTML = markdown;
+    document.body.appendChild(html);
 }

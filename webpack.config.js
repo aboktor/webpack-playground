@@ -233,6 +233,14 @@ class StatsPlugin {
 
 module.exports = {
   mode: "production",
+  module: {
+    rules: [
+      {
+        test: /\.md/,
+        use: [{ loader: "html-loader" }, { loader: "./MarkdownLoader.js" }],
+      },
+    ],
+  },
   plugins: [
     // new SmartMinChunkSizePlugin({minChunkSize: 60, chunkOverhead: 0}),
     new StatsPlugin({
@@ -244,7 +252,9 @@ module.exports = {
       ids: true,
       cachedAssets: true,
       children: true,
-      chunkGroups: true
+      chunkGroups: true,
+      chunkGroupMaxAssets: Infinity,
+      assetsSpace: Infinity,
     }),
     new UnderstandingChunkGraphPlugin(),
   ],
@@ -255,7 +265,7 @@ module.exports = {
       minSize: 0,
       hidePathInfo: true,
     },
-    minimize: true,
+    minimize: false,
   },
 };
 
